@@ -12,7 +12,11 @@ var scanCmd = &cobra.Command{
 	Aliases: []string{"scanner"},
 	Short:   "Scan ports on an ip address within a defined port range",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return scan.Execute(args, ports)
+		opt := scan.Options{
+			Args:  args,
+			Ports: ports,
+		}
+		return scan.Run(opt)
 	},
 }
 
